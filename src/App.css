@@ -78,9 +78,13 @@ body {
 
 .card-content h1 span,
 .card-content h4 span{
+  display: inline;
   font-weight: normal;
   color: #4b56ee;
 }
+/* .card-content h4 span i{
+  display: inline-block;
+} */
 
 .filter-list{
   margin: 0;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Data = (props) => {
@@ -10,9 +10,9 @@ const Data = (props) => {
   }, []);
 
   const loadData = async () => {
-    await axios.get('https://api.spaceXdata.com/v3/launches?limit=100&launch_success=true&land_success=true&launch_year=2014')
+    await axios.get('https://api.spaceXdata.com/v3/launches?limit=100')
     .then(res => {
-      // console.log(res);
+      console.log(res, res.data.length);
       setData(res.data)
     })
     .catch((err) => {
