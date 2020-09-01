@@ -2,18 +2,33 @@ import React from 'react';
 import './App.css';
 import useData from './componets/data/data';
 
-
 function App() {
-
   let [data] = useData();
 
-  let years = new Set(
-    data.map((
-      item, index) => item.launch_year
-    )
-  );
+ 
 
-  console.log("B", years);
+  // const arr = [
+  //   {name: 'abc', mob: '123'},
+  //   {name: 'abc', mob: '456'},
+  //   {name: 'xyz', mob: '678'}
+  // ]
+
+  // console.log("ddddd", arr.map(data => data.name))
+  // const unique = new Set(arr.map(data => data.name));
+  // console.log("uuuuu", unique)
+
+  // let a = data.map(data => data.launch_year);
+  // console.log("A", a);
+
+  // let b = new Set(data.map(data => data.launch_year));
+  // console.log("B", b);
+
+  let unique = new Set(data.map((data, index) => data.launch_year));
+
+  
+ 
+
+  console.log("B", unique);
 
   return ( 
     <div className="layout">
@@ -27,8 +42,11 @@ function App() {
           <h2>Filters</h2>
           <ul className="filter-list">
             <h5>Launch Year</h5>
-            {years}
-
+            {unique}
+            
+            {/* { data.map((data, index) => (
+              <li key={index + 1}><button>{data.launch_year}</button></li>
+            ))} */}
           </ul>
 
           <ul className="filter-list">

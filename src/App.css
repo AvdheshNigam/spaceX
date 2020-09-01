@@ -57,6 +57,7 @@ body {
 }
 .card-img img {
   max-width: 100%;
+  margin: 0 auto;
 }
 
 .card-content {
@@ -106,13 +107,33 @@ body {
   color: #000;
 }
 
-
-
-@media screen and (max-width: 700px) {
+@media (max-width: 991px) {
+  .side {
+    flex: 30%;
+  }
+  .main {
+    flex: 70%;
+  }
   .layout{
     width: 100%;
   }
-  .row {   
+  .row {
+    display: flex;
+    /* flex-direction: column; */
+  }
+  .card{
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .row {
     flex-direction: column;
+  }
+  .card{
+    flex-basis: 100%;
+    max-width: 100%;
   }
 }

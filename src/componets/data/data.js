@@ -10,7 +10,7 @@ const Data = (props) => {
   }, []);
 
   const loadData = async () => {
-    await axios.get('https://api.spaceXdata.com/v3/launches?limit=100')
+    await axios.get('https://api.spaceXdata.com/v3/launches?limit=10')
     .then(res => {
       console.log(res, res.data.length);
       setData(res.data)
