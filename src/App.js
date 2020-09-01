@@ -6,14 +6,17 @@ import useData from './componets/data/data';
 function App() {
 
   let [data] = useData();
+  let year = [... new Set(data)];
 
-  let years = new Set(
-    data.map((
-      item, index) => item.launch_year
-    )
-  );
+  // let years = new Set(
+  //   data.map((
+  //     item, index) => item.launch_year
+  //   )
+  // );
 
-  console.log("B", years);
+  // console.log("A", years);
+  
+  console.log("B", year);
 
   return ( 
     <div className="layout">
@@ -27,7 +30,16 @@ function App() {
           <h2>Filters</h2>
           <ul className="filter-list">
             <h5>Launch Year</h5>
-            {years}
+            {/* {years} */}
+
+            {
+              year.map((data, index) => {
+                return (
+                  <li key={index + 1}><button value={data.launch_year} onClick={(e) => e.target.value}>{data.launch_year}</button></li>
+                )
+              })
+            
+            }
 
           </ul>
 

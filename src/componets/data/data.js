@@ -4,7 +4,7 @@ import axios from 'axios';
 const Data = (props) => {
 
   const [data, setData] = useState([]);
-  
+
   useEffect(() => {
     loadData();
   }, []);
@@ -17,7 +17,11 @@ const Data = (props) => {
     })
     .catch((err) => {
       console.log(err);
-    })}
+    })
+    // const APIData = await fetch('https://api.spaceXdata.com/v3/launches?limit=10');
+    // const res = await APIData.json();
+    // setData(res.data);
+  }
 
     return [data];
 }
