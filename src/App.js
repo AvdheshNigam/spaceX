@@ -6,17 +6,24 @@ import useData from './componets/data/data';
 function App() {
 
   let [data] = useData();
-  let year = [... new Set(data)];
-
-  // let years = new Set(
-  //   data.map((
-  //     item, index) => item.launch_year
-  //   )
-  // );
-
-  // console.log("A", years);
   
-  console.log("B", year);
+  let years = new Set(
+    data.map(
+      year => year.launch_year
+    )
+  );
+
+  let launch = new Set(
+    data.map(
+      year => year.launch_success
+    )
+  );
+
+  let landing = new Set(
+    data.map(
+      year => year.land_success
+    )
+  );
 
   return ( 
     <div className="layout">
@@ -30,30 +37,24 @@ function App() {
           <h2>Filters</h2>
           <ul className="filter-list">
             <h5>Launch Year</h5>
-            {/* {years} */}
 
             {
-              year.map((data, index) => {
-                return (
-                  <li key={index + 1}><button value={data.launch_year} onClick={(e) => e.target.value}>{data.launch_year}</button></li>
-                )
-              })
-            
-            }
-
+              [...years].map((data, index) => (
+                <li key={index + 1}><button>{String(data)}</button></li>
+              ))}
           </ul>
 
           <ul className="filter-list">
             <h5>Succesful Launch</h5>
-            { data.map((data, index) => (
-              <li key={index + 1}><button>{String(data.launch_success)}</button></li>
+            { [...launch].map((data, index) => (
+              <li key={index + 1}><button>{String(data)}</button></li>
             ))}
           </ul>
 
           <ul className="filter-list">
             <h5>Succesful Landing</h5>
-            { data.map((data, index) => (
-              <li key={index + 1}><button>{String(data.land_success)}</button></li>
+            { [...landing].map((data, index) => (
+              <li key={index + 1}><button>{String(data)}</button></li>
             ))}
           </ul>
         </div>

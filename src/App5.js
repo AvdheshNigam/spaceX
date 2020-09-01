@@ -23,6 +23,15 @@ function App() {
   // let b = new Set(data.map(data => data.launch_year));
   // console.log("B", b);
 
+  // let tempArr = [];
+  // let tempMap = {};
+  // data.forEach(item => {
+  //   tempMap[item.launch_year] = item;
+  // })
+  // Object.keys(tempMap).forEach(item=>{
+  //   tempArr.push(item)
+  // })
+
   let unique = new Set(data.map((data, index) => data.launch_year));
 
   
