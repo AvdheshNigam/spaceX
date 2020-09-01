@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import useData from './componets/data/data';
 
 function App() {
 
   let [data] = useData();
+
+  const [ value, setValue ] = useState({
+    value: [],
+  });
   
   let years = new Set(
     data.map(
@@ -24,6 +28,13 @@ function App() {
     )
   );
 
+  const getValue = (event) => {
+    setValue({
+      value: event.target.value,
+    });
+    console.log("valueeeee", value);
+  };
+
   return ( 
     <div className="layout">
 
@@ -39,7 +50,7 @@ function App() {
 
             {
               [...years].map((data, index) => (
-                <li key={index + 1}><button>{String(data)}</button></li>
+                <li key={index + 1}><button value={data} onClick={getValue}>{String(data)}</button></li>
               ))}
           </ul>
 
