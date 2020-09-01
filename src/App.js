@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import './App.css';
 import useData from './componets/data/data';
 
-function App() {
+function App(props) {
 
   let [data] = useData();
 
   const [ value, setValue ] = useState({
-    value: [],
+    value: '',
   });
-  
+  console.log("dddhd", value);
+
+
+  const ValueContext = React.createContext({
+    value
+  })
+  console.log("vcccc", ValueContext);
+
+
   let years = new Set(
     data.map(
       year => year.launch_year
@@ -32,7 +40,7 @@ function App() {
     setValue({
       value: event.target.value,
     });
-    console.log("valueeeee", value);
+    console.log("btn value", value);
   };
 
   return ( 
@@ -57,14 +65,14 @@ function App() {
           <ul className="filter-list">
             <h5>Succesful Launch</h5>
             { [...launch].map((data, index) => (
-              <li key={index + 1}><button>{String(data)}</button></li>
+              <li key={index + 1}><button value={data} onClick={getValue}>{String(data)}</button></li>
             ))}
           </ul>
 
           <ul className="filter-list">
             <h5>Succesful Landing</h5>
             { [...landing].map((data, index) => (
-              <li key={index + 1}><button>{String(data)}</button></li>
+              <li key={index + 1}><button value={data} onClick={getValue}>{String(data)}</button></li>
             ))}
           </ul>
         </div>
@@ -87,8 +95,11 @@ function App() {
             ))}
           </div>
         </div>
-      </div>
 
+      </div>
+      <div class="footer">
+          <h2>Avdhesh Kumar Nigam</h2>
+        </div>
     </div>
 
   );
