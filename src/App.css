@@ -16,7 +16,7 @@ body {
 
 .header {
   padding: 15px;
-  background: #f1f1f1;
+  background: rgb(241, 241, 241);
 }
 .header h1{
   font-size: 25px;
@@ -89,9 +89,12 @@ body {
 } */
 
 .filter-list{
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
   text-align: center;
+  background-color: #fff;
+  border-radius: 15px;
 }
 
 .filter-list li {
@@ -122,7 +125,7 @@ body {
 .footer {
   padding: 20px;
   text-align: center;
-  background: #ddd;
+  background: rgb(241, 241, 241);
 }
 
 @media (max-width: 991px) {
