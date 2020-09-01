@@ -32,6 +32,20 @@ function App() {
   //   tempArr.push(item)
   // })
 
+  // const rocket = {
+  //   first_stage:{
+  //     rocket_id: 1,
+  //     cores: [
+  //       {
+  //         flight: 1,
+  //         land_success: null
+  //     }
+  //     ],
+
+  //   }
+  // }
+  // console.log(rocket.first_stage.cores[0].land_success)
+
   let unique = new Set(data.map((data, index) => data.launch_year));
 
   

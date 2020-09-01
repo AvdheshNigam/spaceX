@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import useData from './componets/data/data';
 
-
 function App() {
 
   let [data] = useData();
@@ -15,13 +14,13 @@ function App() {
 
   let launch = new Set(
     data.map(
-      year => year.launch_success
+      launch => launch.launch_success
     )
   );
 
   let landing = new Set(
     data.map(
-      year => year.land_success
+      landing => landing.rocket.first_stage.cores[0].land_success
     )
   );
 

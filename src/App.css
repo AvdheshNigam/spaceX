@@ -90,6 +90,7 @@ body {
 .filter-list{
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .filter-list li {
@@ -104,6 +105,15 @@ body {
 .filter-list li button {
   width: 100%;
   background-color: #1abc9c;
+  color: #000;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 12px;
+  border: none;
+}
+
+.filter-list li button:focus{
+  background-color: #a3eedf;
   color: #000;
 }
 
