@@ -8,20 +8,22 @@ function App(props) {
   const [ data, setData ] = useState([]);
   const [ allData, setAllData ] = useState([]);
 
-  let [ state, setState ] = useState({
+  const [ state, setState ] = useState({
     limit: 100,
     year: 2014,
     launchSuccess: true,
     landSuccess: true
   });
   
-  console.log(state);
-  let url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.landSuccess}&amp;launch_year=${String(state.year)}` 
+  console.log('Outside 1', state);
+
   useEffect(() => {
+    console.log('Inside useEffect', { ...state, year: props.year });
+    
+    const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.landSuccess}&amp;launch_year=${String(state.year)}`;
+
     const loadData = async () => {
       await axios.get(url)
-      //https://api.spacexdata.com/v3/launches?limit=100
-
       .then(res => {
         console.log('cards', res, res.data.length);
         setData(res.data);
@@ -45,7 +47,9 @@ function App(props) {
     loadData();
     loadFilter();
 
-  }, []);
+  }, [props.year]);
+
+  console.log('Outside 2', state);
 
   let years = new Set(
     allData.map(
@@ -69,7 +73,7 @@ function App(props) {
     event.preventDefault();
     setState({
       ...state,
-      year: event.target.value,
+      year: event.target.value*1,
     });
   };
 
