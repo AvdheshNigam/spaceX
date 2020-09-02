@@ -17,11 +17,10 @@ function App(props) {
   
   console.log('Outside 1', state);
 
+  const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.landSuccess}&amp;launch_year=${String(state.year)}`;
+  
   useEffect(() => {
-    console.log('Inside useEffect', { ...state, year: props.year });
-    
-    const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.landSuccess}&amp;launch_year=${String(state.year)}`;
-
+    console.log('Inside useEffect', setState(state => ({ ...state, year: props.year })));
     const loadData = async () => {
       await axios.get(url)
       .then(res => {
