@@ -9,7 +9,6 @@ function App(props) {
   const [ value, setValue ] = useState({
     value: '',
   });
-  
   console.log("dddhd", value);
 
 
