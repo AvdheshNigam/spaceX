@@ -16,10 +16,10 @@ function App(props) {
   });
   
   console.log(state);
-
+  let url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.landSuccess}&amp;launch_year=${String(state.year)}` 
   useEffect(() => {
     const loadData = async () => {
-      await axios.get(`https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.launchSuccess}&amp;launch_year=${state.year}`)
+      await axios.get(url)
       //https://api.spacexdata.com/v3/launches?limit=100
 
       .then(res => {
@@ -44,7 +44,7 @@ function App(props) {
 
     loadData();
     loadFilter();
-    
+
   }, []);
 
   let years = new Set(
@@ -93,7 +93,7 @@ function App(props) {
 
     <div className="layout">
     <div className="header">
-      <h1>SpaceX Lauches Programs <span>Limit: <i>{state.limit}</i>, Year Data: <i>{state.year}</i>, Succesful Launch: <i>{String(state.launchSuccess)}</i>, Succesful Landing: <i>{String(state.landSuccess)}</i></span></h1>
+      <h1>SpaceX Lauches Programs <span>Limit: <i>{state.limit}</i>, Year Data: <i>{state.year}</i>, Succesful Launch: <i>{String(state.launchSuccess)}</i>, Succesful Landing: <i>{String(state.landSuccess)}</i> Count: {data.length}</span></h1>
     </div>
 
     <div className="row">
