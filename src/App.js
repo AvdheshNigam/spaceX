@@ -44,6 +44,7 @@ function App(props) {
 
     loadData();
     loadFilter();
+    
   }, []);
 
   let years = new Set(
