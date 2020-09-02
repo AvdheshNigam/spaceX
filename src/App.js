@@ -15,7 +15,7 @@ function App(props) {
   }, []);
 
   const loadData = async () => {
-    await axios.get(`https://api.spacexdata.com/v3/launches?limit=100&launch_year=2014`)
+    await axios.get(`https://api.spacexdata.com/v3/launches?limit=100`)
     //https://api.spacexdata.com/v3/launches?limit=100&amp;launch_success=true&amp;land_success=true&amp;launch_year=2014
     .then(res => {
       console.log('cards', res, res.data.length);
