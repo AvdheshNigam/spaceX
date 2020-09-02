@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Data = (props) => {
-
+let index
   return (
-    <div className="card" >
+    <div className="card" key={index + 1}>
       <div className="card-img">
         <img src={props.image} alt="" />
       </div>
