@@ -8,7 +8,7 @@ let index
         <img src={props.image} alt="" />
       </div>
       <div className="card-content">
-        <h1>{props.fightName}: <span># {props.fightNumber}</span></h1>
+        <h1>{props.flightName}: <span># {props.flightNumber}</span></h1>
         <h4>Mission Ids: <span>{props.missionID.map((data, index) => [index > 0 && ', ', <i key={index + 1}>{data}</i> ])}</span></h4>
         <h4>Launch Year <span>{props.launchYear}</span></h4>
         <h4>Successful Launch <span>{String(props.lauchSuccess)}</span></h4>

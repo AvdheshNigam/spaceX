@@ -25,6 +25,12 @@ body {
   padding: 0;
   text-align: left;
 }
+.header h1 span{
+  font-size: 12px;
+}
+.header h1 span i{
+  color: red;
+}
 .row {  
   display: flex;
   flex-wrap: wrap;
