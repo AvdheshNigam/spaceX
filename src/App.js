@@ -1,17 +1,34 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
-import useData from './componets/data/data2';
+import axios from 'axios';
+import Data from './componets/data/data';
 
 function App(props) {
 
-  let [data] = useData();
+  const [data, setData] = useState([]);
+  const url = `https://api.spacexdata.com/v3/launches?limit=100`;
+  
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    await axios.get(url)
+    .then(res => {
+      console.log(res, res.data.length);
+      setData(res.data)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
 
   const [ value, setValue ] = useState({
     value: '',
   });
   
   console.log("dddhd", value);
-
 
   const ValueContext = React.createContext({
     value
@@ -80,23 +97,21 @@ function App(props) {
 
         <div className="main">
           <div className="row">
-            { data.map((data, index) => (
-              <div className="card" key={index + 1}>
-                <div className="card-img">
-                  <img src={data.links.mission_patch_small} alt="" />
-                </div>
-                <div className="card-content">
-                  <h1>{data.mission_name}: <span># {data.flight_number}</span></h1>
-                  <h4>Mission Ids: <span>{data.mission_id.map((data, index) => [index > 0 && ', ', <i key={index + 1}>{data}</i> ])}</span></h4>
-                  <h4>Launch Year <span>{data.launch_year}</span></h4>
-                  <h4>Successful Launch <span>{String(data.launch_success)}</span></h4>
-                  <h4>Successful Landing <span>{data.rocket.first_stage.cores.map((data) => data.land_success)}</span></h4>
-                </div>
-              </div>
+          { 
+            data.map((data) => (
+            <Data 
+              image={data.links.mission_patch_small} 
+              fightName={data.mission_name} 
+              fightNumber={data.flight_number}
+              missionID={data.mission_id}
+              launchYear={data.launch_year}
+              lauchSuccess={data.launch_success}
+              cores={data.rocket.first_stage.cores}
+            />
             ))}
           </div>
         </div>
-
+        
       </div>
       <div class="footer">
           <h2>Avdhesh Kumar Nigam</h2>
