@@ -122,7 +122,8 @@ body {
   border: none;
 }
 
-.filter-list li button:focus{
+.filter-list li button:focus,
+.filter-list li button:active{
   background-color: #a3eedf;
   color: #000;
 }

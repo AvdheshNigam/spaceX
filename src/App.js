@@ -65,6 +65,7 @@ function App(props) {
   );
 
   const getYearValue = (event) => {
+    event.preventDefault();
     setState({
       ...state,
       year: event.target.value,
@@ -72,6 +73,7 @@ function App(props) {
   };
 
   const getLaunchValue = (event) => {
+    event.preventDefault();
     setState({
       ...state,
       launchSuccess: event.target.value
@@ -79,6 +81,7 @@ function App(props) {
   };
   
   const getLandValue = (event) => {
+    event.preventDefault();
     setState({
       ...state,
       landSuccess: event.target.value,
