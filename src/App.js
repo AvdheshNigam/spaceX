@@ -7,6 +7,7 @@ function App(props) {
 
   const [ data, setData ] = useState([]);
   const [ allData, setAllData ] = useState([]);
+  const [ loading, setLoading] = useState(false);
 
   const [ state, setState ] = useState({
     limit: 100,
@@ -15,6 +16,7 @@ function App(props) {
     landSuccess: ''
   });
 
+
   useEffect(() => {
     const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&launch_success=${state.launchSuccess}&land_success=${state.landSuccess}&launch_year=${String(state.year)}`;
     const loadData = async () => {
@@ -22,6 +24,7 @@ function App(props) {
       .then(res => {
         console.log('cards', res, res.data.length);
         setData(res.data);
+        setLoading(true);
       })
       .catch((err) => {
         console.log(err);
@@ -34,6 +37,7 @@ function App(props) {
       .then(res => {
         console.log('filters', res, res.data.length);
         setAllData(res.data);
+        setLoading(true);
       })
       .catch((err) => {
         console.log(err);
@@ -88,7 +92,7 @@ function App(props) {
   };
 
   return (
-
+    
     <div className="layout">
     <div className="header">
       <h1>SpaceX Lauches Programs</h1>
@@ -96,34 +100,39 @@ function App(props) {
 
     <div className="row">
       <div className="side">
-        <h2>Filters</h2>
-        <ul className="filter-list">
-          <h5>Launch Year</h5>
+        {
+          loading ? (
+            <div>
+            <h2>Filters</h2>
+            <ul className="filter-list">
+              <h5>Launch Year</h5>
 
-          {
-            [...years].map((data, index) => (
-              <li key={index + 1}><button value={data} onClick={getYearValue}>{String(data)}</button></li>
-            ))
-          }
-        </ul>
+              {
+                [...years].map((data, index) => (
+                  <li key={index + 1}><button value={data} onClick={getYearValue}>{String(data)}</button></li>
+                ))
+              }
+            </ul>
 
-        <ul className="filter-list">
-          <h5>Succesful Launch</h5>
-          { 
-            [...launch].map((data, index) => (
-              <li key={index + 1}><button value={data} onClick={getLaunchValue}>{String(data)}</button></li>
-            ))
-          }
-        </ul>
+            <ul className="filter-list">
+              <h5>Succesful Launch</h5>
+              { 
+                [...launch].map((data, index) => (
+                  <li key={index + 1}><button value={data} onClick={getLaunchValue}>{String(data)}</button></li>
+                ))
+              }
+            </ul>
 
-        <ul className="filter-list">
-          <h5>Succesful Landing</h5>
-          {
-           [...landing].map((data, index) => (
-            <li key={index + 1}><button value={data} onClick={getLandValue}>{String(data)}</button></li>
-            ))
-          }
-        </ul>
+            <ul className="filter-list">
+              <h5>Succesful Landing</h5>
+              {
+              [...landing].map((data, index) => (
+                <li key={index + 1}><button value={data} onClick={getLandValue}>{String(data)}</button></li>
+                ))
+              }
+            </ul></div>
+          ) : (<p>Data loading... </p>)
+        }
       </div>
 
       <div className="main">
@@ -144,20 +153,23 @@ function App(props) {
             </h1>
             }
           </div>
+          {
+            loading ? (
+              data.map((data, index) => (
+                <Data
+                  key={index + 1}
+                  image={data.links.mission_patch_small} 
+                  flightName={data.mission_name} 
+                  flightNumber={data.flight_number}
+                  missionID={data.mission_id}
+                  launchYear={data.launch_year}
+                  lauchSuccess={data.launch_success}
+                  cores={data.rocket.first_stage.cores}
+                />
+              ))
+            ) : (<p>Data loading... </p>)
+          }
 
-          { 
-            data.map((data, index) => (
-              <Data
-                key={index + 1}
-                image={data.links.mission_patch_small} 
-                flightName={data.mission_name} 
-                flightNumber={data.flight_number}
-                missionID={data.mission_id}
-                launchYear={data.launch_year}
-                lauchSuccess={data.launch_success}
-                cores={data.rocket.first_stage.cores}
-              />
-          ))}
         </div>
       </div>
       
