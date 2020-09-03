@@ -128,7 +128,14 @@ function App(props) {
 
       <div className="main">
         <div className="row">
-        {data.length === 0 ? 'Result not found' : ''}
+        {
+          data.length === 0 ? (
+            <div className="error">
+              <h1>Result not found</h1>
+            </div>
+          ): ''
+        }
+
         { 
           data.map((data, index) => (
           <Data
