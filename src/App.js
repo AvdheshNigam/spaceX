@@ -105,7 +105,6 @@ function App(props) {
             <h2>Filters</h2>
             <ul className="filter-list">
               <h5>Launch Year</h5>
-
               {
                 [...years].map((data, index) => (
                   <li key={index + 1}><button value={data} onClick={getYearValue}>{String(data)}</button></li>
