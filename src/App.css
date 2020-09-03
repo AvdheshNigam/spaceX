@@ -39,7 +39,14 @@ body {
 .side {
   flex: 20%;
   background-color: #f1f1f1;
-  padding: 20px;
+  padding: 5px 15px 15px 15px;
+}
+.side h2{
+  font-size:17px;
+  background-color: #fff;
+  padding: 15px 15px;
+  border-radius: 15px;
+  margin-left: 10px;
 }
 
 .main {
@@ -111,7 +118,6 @@ body {
   margin-right: 10%;
 }
 
-
 .filter-list li button {
   width: 100%;
   background-color: #1abc9c;
@@ -127,7 +133,20 @@ body {
   background-color: #a3eedf;
   color: #000;
 }
-
+.error {
+  display: flex;
+  padding: 15px 15px;
+  flex-basis: 100%;
+  max-width: 100%;
+  background-color: #ddd;;
+}
+.error h1 {
+  font-size: 15px;
+  color: #ff0000;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
 /* Footer */
 .footer {
   padding: 20px;

@@ -128,26 +128,27 @@ function App(props) {
 
       <div className="main">
         <div className="row">
-        {
-          data.length === 0 ? (
-            <div className="error">
-              <h1>Result not found</h1>
-            </div>
-          ): ''
-        }
 
-        { 
-          data.map((data, index) => (
-          <Data
-            key={index + 1}
-            image={data.links.mission_patch_small} 
-            flightName={data.mission_name} 
-            flightNumber={data.flight_number}
-            missionID={data.mission_id}
-            launchYear={data.launch_year}
-            lauchSuccess={data.launch_success}
-            cores={data.rocket.first_stage.cores}
-          />
+          {
+            data.length === 0 ? (
+              <div className="error">
+                <h1>Result not found</h1>
+              </div>
+            ): ''
+          }
+
+          { 
+            data.map((data, index) => (
+            <Data
+              key={index + 1}
+              image={data.links.mission_patch_small} 
+              flightName={data.mission_name} 
+              flightNumber={data.flight_number}
+              missionID={data.mission_id}
+              launchYear={data.launch_year}
+              lauchSuccess={data.launch_success}
+              cores={data.rocket.first_stage.cores}
+            />
           ))}
         </div>
       </div>
