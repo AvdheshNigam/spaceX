@@ -128,6 +128,7 @@ function App(props) {
 
       <div className="main">
         <div className="row">
+        {data.length === 0 ? 'Result not found' : ''}
         { 
           data.map((data, index) => (
           <Data
