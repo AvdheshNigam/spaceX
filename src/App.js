@@ -48,19 +48,19 @@ function App(props) {
 
   }, [state]);
 
-  let years = new Set(
+  const years = new Set(
     allData.map(
       year => year.launch_year
     )
   );
 
-  let launch = new Set(
+  const launch = new Set(
     allData.map(
       launch => launch.launch_success
     )
   );
 
-  let landing = new Set(
+  const landing = new Set(
     allData.map(
       landing => landing.rocket.first_stage.cores[0].land_success
     )
