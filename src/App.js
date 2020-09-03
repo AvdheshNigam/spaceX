@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Data from './componets/data/data';
 import Filter from './componets/data/filter';
+import Errors from './componets/data/errors';
 
 function App(props) {
 
@@ -49,27 +50,27 @@ function App(props) {
 
   }, [state]);
 
-  const getYearValue = (event) => {
-    event.preventDefault();
+  const getYearValue = (e) => {
+    e.preventDefault();
     setState({
       ...state,
-      year: event.target.value*1,
+      year: e.target.value*1,
     });
   };
 
-  const getLaunchValue = (event) => {
-    event.preventDefault();
+  const getLaunchValue = (e) => {
+    e.preventDefault();
     setState({
       ...state,
-      launchSuccess: event.target.value,
+      launchSuccess: e.target.value,
     });
   };
   
-  const getLandValue = (event) => {
-    event.preventDefault();
+  const getLandValue = (e) => {
+    e.preventDefault();
     setState({
       ...state,
-      landSuccess: event.target.value,
+      landSuccess: e.target.value,
     });
   };
 
@@ -96,24 +97,15 @@ function App(props) {
 
       <div className="main">
         <div className="row">
-          <div className="error">
-            {
-              data.length === 0 ? (
-                loading ? (
-                  <h1>Result not found</h1>
-                ) : (<p>Data loading... </p>)
-              ):
-              <h1>
-              <span>
-                Limit: <i>{state.limit}</i>, 
-                Year Data: <i>{state.year}</i>, 
-                Succesful Launch: <i>{String(state.launchSuccess)}</i>, 
-                Succesful Landing: <i>{String(state.landSuccess)}</i>,
-                Count: {data.length}
-              </span>
-            </h1>
-            }
-          </div>
+          {
+            loading ? (
+              <Errors 
+                data={data}
+                state={state}
+              />
+            ) : (<p>Data loading... </p>)
+          }
+          
           {
             loading ? (
               data.map((data, index) => (
