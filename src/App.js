@@ -19,7 +19,7 @@ function App(props) {
 
   
   useEffect(() => {
-    const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&amp;launch_success=${state.launchSuccess}&amp;land_success=${state.landSuccess}&amp;launch_year=${String(state.year)}`;
+    const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&launch_success=${state.launchSuccess}&land_success=${state.landSuccess}&launch_year=${String(state.year)}`;
     console.log('Inside useEffect', state);
     const loadData = async () => {
       await axios.get(url)
@@ -33,7 +33,8 @@ function App(props) {
     }
 
     const loadFilter = async () => {
-      await axios.get(`https://api.spacexdata.com/v3/launches?limit=100`)
+      const loadURL = `https://api.spacexdata.com/v3/launches?limit=100`;
+      await axios.get(loadURL)
       .then(res => {
         console.log('filters', res, res.data.length);
         setAllData(res.data);
@@ -73,6 +74,8 @@ function App(props) {
     setState({
       ...state,
       year: event.target.value*1,
+      // year: 2006,
+      // limit: 2
     });
   };
 
@@ -80,7 +83,8 @@ function App(props) {
     event.preventDefault();
     setState({
       ...state,
-      launchSuccess: event.target.value
+      launchSuccess: event.target.value,
+      // limit: 5
     });
   };
   
