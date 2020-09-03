@@ -48,7 +48,7 @@ function App(props) {
 
   }, [state]);
 
-  console.log('Outside 2', state);
+  // console.log('Outside 2', state);
 
   let years = new Set(
     allData.map(
