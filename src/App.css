@@ -116,7 +116,14 @@ body {
   list-style: none;
   width: 40%;
   margin-bottom: 15px;
-  margin-right: 10%;
+}
+.filter-list li:nth-of-type(2){
+  margin-right: 0%;
+  margin-left: 10%;
+}
+.filter-list li + li{
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .filter-list li button {
