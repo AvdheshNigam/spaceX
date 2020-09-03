@@ -102,33 +102,34 @@ function App(props) {
         {
           loading ? (
             <div>
-            <h2>Filters</h2>
-            <ul className="filter-list">
-              <h5>Launch Year</h5>
-              {
-                [...years].map((data, index) => (
-                  <li key={index + 1}><button value={data} onClick={getYearValue}>{String(data)}</button></li>
-                ))
-              }
-            </ul>
+              <h2>Filters</h2>
+              <ul className="filter-list">
+                <h5>Launch Year</h5>
+                {
+                  [...years].map((data, index) => (
+                    <li key={index + 1}><button value={data} onClick={getYearValue}>{String(data)}</button></li>
+                  ))
+                }
+              </ul>
 
-            <ul className="filter-list">
-              <h5>Succesful Launch</h5>
-              { 
-                [...launch].map((data, index) => (
-                  <li key={index + 1}><button value={data} onClick={getLaunchValue}>{String(data)}</button></li>
-                ))
-              }
-            </ul>
+              <ul className="filter-list">
+                <h5>Succesful Launch</h5>
+                { 
+                  [...launch].map((data, index) => (
+                    <li key={index + 1}><button value={data} onClick={getLaunchValue}>{String(data)}</button></li>
+                  ))
+                }
+              </ul>
 
-            <ul className="filter-list">
-              <h5>Succesful Landing</h5>
-              {
-              [...landing].map((data, index) => (
-                <li key={index + 1}><button value={data} onClick={getLandValue}>{String(data)}</button></li>
-                ))
-              }
-            </ul></div>
+              <ul className="filter-list">
+                <h5>Succesful Landing</h5>
+                {
+                [...landing].map((data, index) => (
+                  <li key={index + 1}><button value={data} onClick={getLandValue}>{String(data)}</button></li>
+                  ))
+                }
+              </ul>
+            </div>
           ) : (<p>Data loading... </p>)
         }
       </div>
