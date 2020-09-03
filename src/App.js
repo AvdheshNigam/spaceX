@@ -66,30 +66,34 @@ function App(props) {
     )
   );
 
-  const getYearValue = (event) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      year: event.target.value*1,
-    });
-  };
-
-  const getLaunchValue = (event) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      launchSuccess: event.target.value,
-    });
-  };
+  const getValue = (year, launch, landing) => {
+    if('year') {
+      return (event) => {
+        event.preventDefault();
+        setState({
+          ...state,
+          year: event.target.value*1,
+        });
+      };
+    } else if('launch') {
+      return (event) => {
+        event.preventDefault();
+        setState({
+          ...state,
+          launchSuccess: event.target.value,
+        });
+      };
+    } else if('landing') {
+      return (event) => {
+        event.preventDefault();
+        setState({
+          ...state,
+          landSuccess: event.target.value,
+        });
+      };
+    }
+  }
   
-  const getLandValue = (event) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      landSuccess: event.target.value,
-    });
-  };
-
   return (
     
     <div className="layout">
@@ -107,7 +111,7 @@ function App(props) {
                 <h5>Launch Year</h5>
                 {
                   [...years].map((data, index) => (
-                    <li key={index + 1}><button value={data} onClick={getYearValue}>{String(data)}</button></li>
+                    <li key={index + 1}><button value={data} onClick={getValue('year')}>{String(data)}</button></li>
                   ))
                 }
               </ul>
@@ -116,7 +120,7 @@ function App(props) {
                 <h5>Succesful Launch</h5>
                 { 
                   [...launch].map((data, index) => (
-                    <li key={index + 1}><button value={data} onClick={getLaunchValue}>{String(data)}</button></li>
+                    <li key={index + 1}><button value={data} onClick={getValue('launch')}>{String(data)}</button></li>
                   ))
                 }
               </ul>
@@ -125,7 +129,7 @@ function App(props) {
                 <h5>Succesful Landing</h5>
                 {
                 [...landing].map((data, index) => (
-                  <li key={index + 1}><button value={data} onClick={getLandValue}>{String(data)}</button></li>
+                  <li key={index + 1}><button value={data} onClick={getValue('landing')}>{String(data)}</button></li>
                   ))
                 }
               </ul>
