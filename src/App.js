@@ -136,7 +136,6 @@ function App(props) {
       <div className="main">
         <div className="row">
           <div className="error">
-            
               {
                 data.length === 0 ? (
                   loading ? (
@@ -153,7 +152,6 @@ function App(props) {
                 </span>
               </h1>
               }
-
           </div>
           {
             loading ? (
