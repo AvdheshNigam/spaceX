@@ -91,7 +91,7 @@ function App(props) {
 
     <div className="layout">
     <div className="header">
-      <h1>SpaceX Lauches Programs <span>Limit: <i>{state.limit}</i>, Year Data: <i>{state.year}</i>, Succesful Launch: <i>{String(state.launchSuccess)}</i>, Succesful Landing: <i>{String(state.landSuccess)}</i> Count: {data.length}</span></h1>
+      <h1>SpaceX Lauches Programs</h1>
     </div>
 
     <div className="row">
@@ -128,14 +128,22 @@ function App(props) {
 
       <div className="main">
         <div className="row">
-
-          {
-            data.length === 0 ? (
-              <div className="error">
+          <div className="error">
+            {
+              data.length === 0 ? (
                 <h1>Result not found</h1>
-              </div>
-            ): ''
-          }
+              ):
+              <h1>
+              <span>
+                Limit: <i>{state.limit}</i>, 
+                Year Data: <i>{state.year}</i>, 
+                Succesful Launch: <i>{String(state.launchSuccess)}</i>, 
+                Succesful Landing: <i>{String(state.landSuccess)}</i>,
+                Count: {data.length}
+              </span>
+            </h1>
+            }
+          </div>
 
           { 
             data.map((data, index) => (

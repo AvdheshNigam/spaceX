@@ -140,13 +140,20 @@ body {
   max-width: 100%;
   background-color: #fff;
   border-radius: 15px;
+  margin-bottom: 15px;
 }
 .error h1 {
   font-size: 15px;
-  color: #ff0000;
+  color: #000;
   text-align: center;
   margin: 0;
   padding: 0;
+}
+.error h1 span{
+  font-size: 12px;
+}
+.error h1 span i{
+  color: red;
 }
 /* Footer */
 .footer {
