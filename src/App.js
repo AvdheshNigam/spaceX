@@ -105,7 +105,7 @@ function App(props) {
               />
             ) : (<p>Data loading... </p>)
           }
-          
+      
           {
             loading ? (
               data.map((data, index) => (
