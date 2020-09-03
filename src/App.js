@@ -15,12 +15,11 @@ function App(props) {
     landSuccess: ''
   });
   
-  console.log('Outside 1', state);
+  // console.log('Outside 1', state);
 
-  
   useEffect(() => {
     const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&launch_success=${state.launchSuccess}&land_success=${state.landSuccess}&launch_year=${String(state.year)}`;
-    console.log('Inside useEffect', state);
+    // console.log('Inside useEffect', state);
     const loadData = async () => {
       await axios.get(url)
       .then(res => {
