@@ -10,9 +10,9 @@ function App(props) {
 
   const [ state, setState ] = useState({
     limit: 100,
-    year: 2014,
-    launchSuccess: true,
-    landSuccess: true
+    year: '',
+    launchSuccess: '',
+    landSuccess: ''
   });
   
   console.log('Outside 1', state);
