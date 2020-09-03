@@ -136,20 +136,24 @@ function App(props) {
       <div className="main">
         <div className="row">
           <div className="error">
-            {
-              data.length === 0 ? (
-                <h1>Result not found</h1>
-              ):
-              <h1>
-              <span>
-                Limit: <i>{state.limit}</i>, 
-                Year Data: <i>{state.year}</i>, 
-                Succesful Launch: <i>{String(state.launchSuccess)}</i>, 
-                Succesful Landing: <i>{String(state.landSuccess)}</i>,
-                Count: {data.length}
-              </span>
-            </h1>
-            }
+            
+              {
+                data.length === 0 ? (
+                  loading ? (
+                    <h1>Result not found</h1>
+                  ) : (<p>Data loading... </p>)
+                ):
+                <h1>
+                <span>
+                  Limit: <i>{state.limit}</i>, 
+                  Year Data: <i>{state.year}</i>, 
+                  Succesful Launch: <i>{String(state.launchSuccess)}</i>, 
+                  Succesful Landing: <i>{String(state.landSuccess)}</i>,
+                  Count: {data.length}
+                </span>
+              </h1>
+              }
+
           </div>
           {
             loading ? (
