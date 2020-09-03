@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Data from './componets/data/data';
-import Filter from './componets/data/filter';
 
 function App(props) {
 
@@ -49,33 +48,55 @@ function App(props) {
 
   }, [state]);
 
-  const getYearValue = (event) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      year: event.target.value*1,
-    });
-  };
+  const years = new Set(
+    allData.map(
+      year => year.launch_year
+    )
+  );
 
-  const getLaunchValue = (event) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      launchSuccess: event.target.value,
-    });
-  };
+  const launch = new Set(
+    allData.map(
+      launch => launch.launch_success
+    )
+  );
+
+  const landing = new Set(
+    allData.map(
+      landing => landing.rocket.first_stage.cores[0].land_success
+    )
+  );
+
+  const getValue = (year, launch, landing) => {
+    if('year') {
+      return (event) => {
+        event.preventDefault();
+        setState({
+          ...state,
+          year: event.target.value*1,
+        });
+      };
+    } else if('launch') {
+      return (event) => {
+        event.preventDefault();
+        setState({
+          ...state,
+          launchSuccess: event.target.value,
+        });
+      };
+    } else if('landing') {
+      return (event) => {
+        event.preventDefault();
+        setState({
+          ...state,
+          landSuccess: event.target.value,
+        });
+      };
+    }
+  }
   
-  const getLandValue = (event) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      landSuccess: event.target.value,
-    });
-  };
-
   return (
     
-  <div className="layout">
+    <div className="layout">
     <div className="header">
       <h1>SpaceX Lauches Programs</h1>
     </div>
@@ -84,12 +105,35 @@ function App(props) {
       <div className="side">
         {
           loading ? (
-            <Filter
-              allData={allData}
-              yearValue={getYearValue}
-              launchValue={getLaunchValue}
-              landValue={getLandValue}
-            />
+            <div>
+              <h2>Filters</h2>
+              <ul className="filter-list">
+                <h5>Launch Year</h5>
+                {
+                  [...years].map((data, index) => (
+                    <li key={index + 1}><button value={data} onClick={getValue('year')}>{String(data)}</button></li>
+                  ))
+                }
+              </ul>
+
+              <ul className="filter-list">
+                <h5>Succesful Launch</h5>
+                { 
+                  [...launch].map((data, index) => (
+                    <li key={index + 1}><button value={data} onClick={getValue('launch')}>{String(data)}</button></li>
+                  ))
+                }
+              </ul>
+
+              <ul className="filter-list">
+                <h5>Succesful Landing</h5>
+                {
+                [...landing].map((data, index) => (
+                  <li key={index + 1}><button value={data} onClick={getValue('landing')}>{String(data)}</button></li>
+                  ))
+                }
+              </ul>
+            </div>
           ) : (<p>Data loading... </p>)
         }
       </div>
