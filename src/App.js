@@ -105,21 +105,12 @@ function App(props) {
               />
             ) : (<p>Data loading... </p>)
           }
-      
+          
           {
             loading ? (
-              data.map((data, index) => (
-                <Data
-                  key={index + 1}
-                  image={data.links.mission_patch_small} 
-                  flightName={data.mission_name} 
-                  flightNumber={data.flight_number}
-                  missionID={data.mission_id}
-                  launchYear={data.launch_year}
-                  lauchSuccess={data.launch_success}
-                  cores={data.rocket.first_stage.cores}
-                />
-              ))
+              <Data
+                data={data}
+              />
             ) : (<p>Data loading... </p>)
           }
 

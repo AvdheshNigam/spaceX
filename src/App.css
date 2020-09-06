@@ -34,6 +34,7 @@ body {
 .row {  
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .side {
@@ -53,9 +54,6 @@ body {
   flex: 80%;
   background-color: #f1f1f1;
   padding: 20px;
-}
-.row{
-  display: flex;
 }
 .card{
   flex-basis: 25%;
