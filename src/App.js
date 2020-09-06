@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import axios from 'axios';
-import Data from './componets/data/data';
+import Data from './componets/data/cards';
 import Filter from './componets/data/filter';
 import Errors from './componets/data/errors';
 
@@ -19,30 +18,31 @@ function App(props) {
   });
 
   useEffect(() => {
-    const url = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&launch_success=${state.launchSuccess}&land_success=${state.landSuccess}&launch_year=${String(state.year)}`;
+    
     const loadData = async () => {
-      await axios.get(url)
-      .then(res => {
-        console.log('cards', res, res.data.length);
-        setData(res.data);
+      const loadURL = `https://api.spacexdata.com/v3/launches?limit=${state.limit}&launch_success=${state.launchSuccess}&land_success=${state.landSuccess}&launch_year=${String(state.year)}`;
+      try {
+        const result = await fetch(loadURL)
+        const data = await result.json();
+        console.log('cards', data, data.length);
+        setData(data);
         setLoading(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+      } catch(error) {
+        console.log('Something went wrong!')
+      }
     }
-
+    
     const loadFilter = async () => {
-      const loadURL = `https://api.spacexdata.com/v3/launches?limit=100`;
-      await axios.get(loadURL)
-      .then(res => {
-        console.log('filters', res, res.data.length);
-        setAllData(res.data);
+      const filterURL = `https://api.spacexdata.com/v3/launches?limit=100`;
+      try {
+        const result = await fetch(filterURL)
+        const data = await result.json();
+        console.log('filters', data, data.length);
+        setAllData(data);
         setLoading(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+      } catch(error) {
+          console.log('Something went wrong!')
+      }
     }
 
     loadData();
